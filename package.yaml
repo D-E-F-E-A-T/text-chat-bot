@@ -2,9 +2,9 @@ name:                text-chat-bot
 version:             0.1.0.0
 github:              "githubuser/text-chat-bot"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2019 Author name here"
+author:              "Yan Shkurinsky"
+maintainer:          "yan.shkurinsky@gmail.com"
+copyright:           "2019 Yan Shkurinsky"
 
 extra-source-files:
 - README.md
