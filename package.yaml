@@ -25,6 +25,7 @@ dependencies:
 - bytestring
 - aeson
 - async
+- bytestring
 
 library:
   source-dirs: src
