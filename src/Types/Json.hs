@@ -4,6 +4,7 @@ import Data.Aeson
 import Data.Aeson.Types
 import Data.Text ( Text )
 
+-- |Main configuration data-type
 data Config = Config 
   { messengerConfig :: [MessengerConfig] }
 
