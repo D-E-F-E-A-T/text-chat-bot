@@ -10,11 +10,15 @@ module MyPrelude
   -- |Either exports
   , isLeft, isRight
 
+  -- |Maybe exports
+  , isNothing
+
   )where
 
 import qualified Data.ByteString.Char8  as B
 import qualified Data.Text              as T
 import Data.Either                      ( isLeft, isRight )
+import Data.Maybe                       ( isNothing )
 
 -- |ByteString.Char8 functoins 
 b8ReadFile  = B.readFile
