@@ -8,6 +8,7 @@ import System.Environment             ( getArgs )
 import System.Exit                    ( exitFailure )
 import Control.Monad                  ( when )
 import Data.Aeson                     ( decodeStrict )
+import Control.Monad.Reader           ( runReaderT, ReaderT , MonadReader )
 import qualified Logger               as Logger
 import qualified Logger.Impl.Console  as ConsoleLogger
 import qualified Types                as Types

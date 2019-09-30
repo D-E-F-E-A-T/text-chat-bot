@@ -26,6 +26,7 @@ dependencies:
 - aeson
 - async
 - bytestring
+- mtl
 
 library:
   source-dirs: src
