@@ -1,20 +1,39 @@
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE FunctionalDependencies #-}
+
 module App 
   ( runApp ) where
 
-import Types                ( App (..) , Config )
-import Control.Monad.Reader ( runReaderT )
-import Typeclasses          ( HasConfig (..) )
+import Types                  ( App (..) , Config (..)
+                              , MessengerConfig (..) )
+import Control.Monad.Reader   ( runReaderT )
+import Data.Foldable          ( for_ )
+import Typeclasses            ( Has (..), Liftable (..) )
+import Control.Monad.IO.Class ( MonadIO, liftIO )
 
--- |HasConfig it's MonadReader typeclass with fixed enviroment (Config)
--- and methods:
---  getConfig = ask
-instance HasConfig App
+-- |"Has" it's MonadReader typeclass 
+--  methods:
+--    get' = ask
+instance Has Config           ( App Config )
+instance Liftable IO          ( App Config ) where
+  lift' = liftIO 
+instance Has MessengerConfig  ( App MessengerConfig )
+instance Liftable IO          ( App MessengerConfig ) where
+  lift' = liftIO
 
 runApp :: Config -> IO ()
 runApp config = runReaderT ( unApp app ) config
 
-app :: ( HasConfig m ) => m ()
+runMessengerApp :: MessengerConfig -> IO ()
+runMessengerApp config = runReaderT ( unApp messengerApp ) config 
+
+messengerApp :: ( Has MessengerConfig m, Liftable IO m ) => m ()
+messengerApp = do
+  undefined
+
+app :: ( Has Config m, Liftable IO m ) => m ()
 app = do
-  config <- getConfig
+  config <- get'
+  for_ ( messengers config ) $ lift' . runMessengerApp
   undefined

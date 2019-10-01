@@ -1,11 +1,17 @@
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE FunctionalDependencies #-}
 
 module Typeclasses 
-  ( HasConfig (..) ) where
+  ( Has (..), Liftable (..) ) where
 
-import Control.Monad.Reader ( MonadReader, ask )
-import Types ( Config )
+import Control.Monad.Reader   ( MonadReader, ask )
+import Control.Monad.IO.Class ( MonadIO, liftIO )
+import Types                  ( Config )
 
-class MonadReader Config m => HasConfig m where
-  getConfig :: m Config 
-  getConfig = ask 
+class MonadReader env m => Has env m where
+  get' :: m env 
+  get' = ask 
+
+class Liftable m' m where
+  lift' :: m' a -> m a
+
