@@ -9,6 +9,7 @@ import System.Exit                    ( exitFailure )
 import Control.Monad                  ( when )
 import Data.Aeson                     ( decodeStrict )
 import Control.Monad.Reader           ( runReaderT, ReaderT , MonadReader )
+import App                            ( runApp )
 import qualified Logger               as Logger
 import qualified Logger.Impl.Console  as ConsoleLogger
 import qualified Types                as Types
@@ -42,5 +43,5 @@ main =
   when ( isNothing maybeParsedConfig ) $ 
     logWithExit' "Can't parse configuration file"
   let ( Just parsedConfig ) = maybeParsedConfig
-  undefined
+  runApp parsedConfig
 

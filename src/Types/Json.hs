@@ -8,7 +8,7 @@ import Data.Text ( Text )
 
 -- |Main configuration file data-types
 data Config = Config 
-  { messengerConfig :: [MessengerConfig] }
+  { messengers :: [MessengerConfig] }
 
 data MessengerConfig = MessengerConfig
   { name  :: Text
