@@ -1,12 +1,13 @@
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module App 
   ( runApp ) where
 
-import Types                  ( App (..) , Config (..)
-                              , MessengerConfig (..) )
+import Types                  ( App (..), Config (..)
+                              , MessengerConfig (..), Messenger (..) )
 import Control.Monad.Reader   ( runReaderT )
 import Data.Foldable          ( for_ )
 import Typeclasses            ( Has (..), Liftable (..) )
@@ -29,7 +30,14 @@ runMessengerApp :: MessengerConfig -> IO ()
 runMessengerApp config = runReaderT ( unApp messengerApp ) config 
 
 messengerApp :: ( Has MessengerConfig m, Liftable IO m ) => m ()
-messengerApp = do
+messengerApp = do   
+  messengerName <- get'with name
+  let currentMessenger = 
+        case messengerName of
+        "telegram"  -> Telegram
+        "slack"     -> Slack
+        otherwise   -> Unknown
+
   undefined
 
 app :: ( Has Config m, Liftable IO m ) => m ()
