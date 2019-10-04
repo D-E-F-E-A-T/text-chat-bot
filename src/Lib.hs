@@ -1,6 +1,11 @@
-module Lib
-    ( someFunc
-    ) where
+module Lib where 
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+import MyPrelude
+import qualified Logger               as Logger
+import System.Exit                    ( exitFailure )
+
+logWithExit :: Logger.Handle -> Text -> IO ()
+logWithExit logger text = Logger.logFatal logger text >> exitFailure
+
+
+

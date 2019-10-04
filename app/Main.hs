@@ -10,15 +10,13 @@ import Control.Monad                  ( when )
 import Data.Aeson                     ( decodeStrict )
 import Control.Monad.Reader           ( runReaderT, ReaderT , MonadReader )
 import App                            ( runApp )
+import Core                           ( logWithExit )
 import qualified Logger               as Logger
 import qualified Logger.Impl.Console  as ConsoleLogger
 import qualified Types                as Types
 
 
 type ReadFileExpection a = IO ( Either SomeException a )
-
-logWithExit :: Logger.Handle -> Text -> IO ()
-logWithExit logger text = Logger.logFatal logger text >> exitFailure
 
 main :: IO ()
 main = 

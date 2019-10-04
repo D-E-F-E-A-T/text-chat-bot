@@ -27,6 +27,7 @@ dependencies:
 - async
 - bytestring
 - mtl
+- hspec
 
 library:
   source-dirs: src
