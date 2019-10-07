@@ -37,11 +37,10 @@ messengerApp = do
         "telegram"  -> Telegram
         "slack"     -> Slack
         otherwise   -> Unknown
-
+   
   undefined
 
 app :: ( Has Config m, Liftable IO m ) => m ()
 app = do
   config <- get'
   for_ ( messengers config ) $ lift' . runMessengerApp
-  undefined

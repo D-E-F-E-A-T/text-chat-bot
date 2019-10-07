@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Types.Json
+module Types.JSON
   ( Config (..), MessengerConfig (..), Proxy ) where
 
 import Data.Aeson

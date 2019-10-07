@@ -1,6 +1,6 @@
 module Logger 
-  ( Handle (..)
-  , LogLevel (..)
+  ( Handle    (..)
+  , LogLevel  (..)
   , Logger ) where
 
 import Data.Text ( Text )
@@ -8,7 +8,7 @@ import Data.Text ( Text )
 -- |The levels of logging message
 data LogLevel = 
   Trace | Debug | Info | Warning | Error | Fatal 
-  deriving (Eq, Ord, Show)
+  deriving ( Eq, Ord, Show )
 
 type Logger = Text -> IO ()
 
